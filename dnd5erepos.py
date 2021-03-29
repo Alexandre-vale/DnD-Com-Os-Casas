@@ -16,18 +16,18 @@ def listalljson(proto):
                 print(f'{entry} : {proto[entry]}\n')
 
 def encontremagias():
-    print("Digite o nome da magia")
+    print("Digite o nome da classe")
     entrada = input()
 
     entrada = entrada.lower()
     entrada = entrada.replace(" ", "-")
 
 
-    print(f'Procurando nos grimorios pela magia {entrada} em https://www.dnd5eapi.co/api/spells/{entrada}/...\n')
-    proto = requests.get(f'https://www.dnd5eapi.co/api/spells/{entrada}/')
+    print(f'Procurando nos grimorios pela raça {entrada} em https://www.dnd5eapi.co/api/classes/{entrada}/...\n')
+    proto = requests.get(f'https://www.dnd5eapi.co/api/classes/{entrada}/')
 
     proto = proto.json()
-    listalljson(proto)
+    print(proto)
     
 
 encontremagias()
