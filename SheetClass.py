@@ -38,45 +38,45 @@ class CharSheet{
     def __init__(rawstats, rawclass, rawrace, rawbackground){
         self.name = # Aqui vai vir a integração com api de nomes aleatorios
         # para deixar o jogador mais informado, aqui colocaremos o nome da classe e subclasse(se tiver) e tambem nome da raça e subraça e tambem do background
-        self.classname = rawclass[nome] + rawclass[subclasse]
-        self.racename = rawrace[name] + rawrace[subraca]
-        self.backgroundname = rawbackground[name]
+        self.classname = rawclass["nome"] + rawclass["subclasse"]
+        self.racename = rawrace["name"] + rawrace["subraca"]
+        self.backgroundname = rawbackground["name"]
         #Velocidade é definido pela raça
-        self.speed = rawrace[velocidade]
+        self.speed = rawrace["Speed"]
         #stats é um dicionario, contendo cada stat, que é um dicionario contendo o modificador e o valor bruto
-        self.stats = {strength : {value: rawstats[forca],modifier: ModDic[rawstats[forca]],
+        self.stats = {strength : {value: rawstats["forca"],modifier: ModDic[rawstats["forca"]],
 
-                      dexterity : {value: rawstats[destreza], modifier: ModDic[rawstats[destreza]],
+                      dexterity : {value: rawstats[destreza], modifier: ModDic[rawstats["destreza"]],
 
-                      constitution : {value : rawstats[constituicao], modifier: ModDic[rawstats[constituicao]],
+                      constitution : {value : rawstats["constituicao"], modifier: ModDic[rawstats["constituicao"]],
 
-                      intelligence : {value : rawstats[inteligencia], modifier: ModDic[rawstats[inteligencia]],
+                      intelligence : {value : rawstats["inteligencia"], modifier: ModDic[rawstats["inteligencia"]],
 
-                      wisdom : {value : rawstats[sabedoria], modifier: ModDic[rawstats[sabedoria]],
+                      wisdom : {value : rawstats["sabedoria"], modifier: ModDic[rawstats["sabedoria"]],
 
-                      charisma : {value : rawstats[carisma], modifier: ModDic[rawstats[carisma]]
+                      charisma : {value : rawstats["carisma"], modifier: ModDic[rawstats["carisma"]]
                       }}}}}}}
         # o valor de vida maxima no lvl 1 é o "hit die" da classe + o modificador de constituição
-        self.HP = rawclass[HP] + self.stats[constitution][modifier]
+        self.HP = rawclass["HP"] + self.stats["constitution"]["modifier"]
         # modificador de proficiencia lvl 1 é 2
         self.profMod = 2
         # um dicionario de todas as categorias de proficiencia(que me lembro), a ideia é concatenar as listas de proficiencias que a classe, raça e background concedem
-        self.savingthrows = rawclass[savingthrows]
-        self.proficiencies = {weapons : rawclass[proficiencia][armas] + rawrace[proficiencia][armas] + rawbackground[proficiencia][armas],
-                              armor : rawclass[proficiencia][armadura] + rawrace[proficiencia][armadura] + rawbackground[proficiencia][armadura],
-                              tools : rawclass[proficiencia][ferramentas] + rawrace[proficiencia][ferramentas] + rawbackground[proficiencia][ferramentas],
-                              languages : rawclass[proficiencia][linguas] + rawrace[proficiencia][linguas] + rawbackground[proficiencia][linguas]}
+        self.savingthrows = rawclass["savingthrows"]
+        self.proficiencies = {weapons : rawclass["proficiencia"]["armas"] + rawrace["proficiencia"]["armas"] + rawbackground["proficiencia"]["armas"],
+                              armor : rawclass["proficiencia"]["armadura"] + rawrace["proficiencia"]["armadura"] + rawbackground["proficiencia"]["armadura"],
+                              tools : rawclass["proficiencia"]["ferramentas"] + rawrace["proficiencia"]["ferramentas"] + rawbackground[p"roficiencia"]["ferramentas"],
+                              languages : rawclass["proficiencia"]["linguas"] + rawrace["proficiencia"]["linguas"] + rawbackground["proficiencia"]["linguas"]}
         # uma simples concatenação de listas vindas de rawclass, rawrace e rawbackground, contendo as skills recebidas e escolhidas
-        self.skills = rawclass[skills] + rawrace[skills] + rawbackground[skills]
+        self.skills = rawclass["skills"] + rawrace["skills"] + rawbackground["skills"]
         # um dicionario de equipamento separado em categorias, como raças não provem equipamentos é diferente de proficiencia,
         # tambem possui a categoria "outros", para qualquer coisa avulsa
-        self.equipments = {weapons : rawclass[equipamento][armas] + rawbackground[equipamento][armas],
-                           armor : rawclass[equipamento][armadura] + rawbackground[equipamento][armadura],
-                           tools : rawclass[equipamento][ferramentas] + rawbackground[equipamento][ferramentas],
-                           other : rawclass[equipamento][outros] + rawbackground[equipamento][outros]}
+        self.equipments = {weapons : rawclass["equipamento"]["armas"] + rawbackground["equipamento"]["armas"],
+                           armor : rawclass["equipamento"]["armadura"] + rawbackground["equipamento"]["armadura"],
+                           tools : rawclass["equipamento"]["ferramentas"] + rawbackground["equipamento"]["ferramentas"],
+                           other : rawclass["equipamento"]["outros"] + rawbackground["equipamento"]["outros"]}
         # magias podem ser tanto vindas de classe quanto de raça, no nivel 1, apenas é possivel ter truque e magias de lvl1, porem nem todas as raças e classes possuem magia
-        self.spells = {cantrips : rawclass[magia][truque] + rawrace[magia][truque],
-                       level1 : rawclass[magia][nivel1] + rawrace[magia][nivel1]}
+        self.spells = {cantrips : rawclass["magia"]["truque"] + rawrace["magia"]["truque"],
+                       level1 : rawclass["magia"]["nivel1"] + rawrace["magia"]["nivel1"]}
     }
     #creio que seja tudo isso para a criação de uma ficha, a partir de agora apenas precisamos coletar dados. Qualquer mudança necessária, adicionar coisas, remover coisas ou até
     # mesmo recriar a classe para conveniencia, vão em frente
@@ -89,12 +89,12 @@ class CharSheet{
         Race:{self.racename}                                    Proficiency:{self.profMod}
         Background:{self.backgroundname}
 
-        Stats:                                                  Strength: {self.stats[strength][value]}({self.stats[strength][modifier]})
-                                                               Dexterity: {self.stats[dexterity][value]}({self.stats[dexterity][modifier]})
-                                                            Constitution: {self.stats[constitution][value]}({self.stats[constitution][modifier]})
-                                                            Intelligence: {self.stats[intelligence][value]}({self.stats[intelligence][modifier]})
-                                                                  Wisdom: {self.stats[wisdom][value]}({self.stats[wisdom][modifier]})
-                                                                Charisma: {self.stats[charisma][value]}({self.stats[charisma][modifier]})
+        Stats:                                                  Strength: {self.stats["strength"]["value"]}({self.stats["strength"]["modifier"]})
+                                                               Dexterity: {self.stats["dexterity"]["value"]}({self.stats["dexterity"]["modifier"]})
+                                                            Constitution: {self.stats["constitution"]["value"]}({self.stats["constitution"]["modifier"]})
+                                                            Intelligence: {self.stats["intelligence"]["value"]}({self.stats["intelligence"]["modifier"]})
+                                                                  Wisdom: {self.stats["wisdom"]["value"]}({self.stats["wisdom"]["modifier"]})
+                                                                Charisma: {self.stats["charisma"]["value"]}({self.stats["charisma"]["modifier"]})
 
         Saving Throws: {self.savingthrows}
 
