@@ -11,6 +11,8 @@ from raceProficiency import get_race_proficiency
 from subraceProficiency import get_subrace_proficiency
 from classInfo import get_class_info
 from classProficiency import get_class_proficiency
+from SavingThrows import get_saving_throws
+from ClassEquipment import get_starting_equipment
 
 ModDic = {
     6:-2,
@@ -61,10 +63,11 @@ print("Race:", race[0])
 print("Speed:", race_info["Speed"])
 print("Size:", race_info["Size"])
 print("Class:", _class[0])
-print("Class Info:", class_info["Proficiency_Choices"])
+#print("Class Info:", class_info)
 print("HP:", hp)
+print("Saving Throws:", get_saving_throws(class_info))
 print("Traits:", traits)
 print("Proficiencies:", get_class_proficiency(class_info, proficiencies))
 print("Ability Score:", ability_score)
 print("Languages:", languages)
-
+print("Equipment:", get_starting_equipment(class_info))
