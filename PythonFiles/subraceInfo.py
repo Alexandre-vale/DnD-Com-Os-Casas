@@ -20,7 +20,7 @@ def get_subrace_info(subrace_url):
                         "Languages": original_race_info_json["languages"],
                         "Language_Options": 0,
                         "Traits": original_race_info_json["traits"] + subrace_info_json["racial_traits"] + [random_racial_trait_options],
-                        "Starting_Proficiencies": 0}
+                        "Starting_Proficiencies": original_race_info_json["starting_proficiencies"] + subrace_info_json["starting_proficiencies"]}
     else:
         if "starting_proficiency_options" in original_race_info_json:
             random_proficiency_options = random.choice(original_race_info_json['starting_proficiency_options']['from'])
