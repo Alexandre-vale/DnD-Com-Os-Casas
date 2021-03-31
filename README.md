@@ -30,6 +30,7 @@ Programa Lookup que permite visualizar o que o request get no api do d&d5e retor
 Programa para coletar as informações de raça  
 Coletado informações de HP, Saving throws, proficiencias e equipamentos provenientes da classe  
 Programa para calcular os stats base(4d6 dropa o menor)  
+Criação de uma ficha em PDF que tem auto-preenchimento
   
 A Fazer:  
 Programa para coletar as informações de classe, falta pouca coisa  
