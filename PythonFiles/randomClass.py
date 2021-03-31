@@ -15,5 +15,16 @@ def get_random_class():
         base_class[classes["name"]] = class_url + '/' + classes['index']
 
     random_class = random.choice(list(base_class.items()))
+    #
+    subclass_info = requests.get(random_class[1])
 
-    return random_class
+    subclass_info_json =  subclass_info.json()
+
+    base_subclass = [random_class[0]]
+
+    for subclass in subclass_info_json["subclasses"]:
+        base_subclass.append(random_class[0] + '-' + subclass["name"])
+
+    random_classes = random.choice(base_subclass)
+    # cagada marcada
+    return [random_classes, random_class[1]]
