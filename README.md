@@ -19,8 +19,7 @@ Ai a ficha ta pronta;
   
 # CHANGELOG, VEJA ANTES DE COMEÇAR  
   
-O dia de trabalho de ontem rendeu a função que pega todo o possivel equipamento que a classe  de nível 1 pode ter aleatoriamente, tive umas ideias para como  
-pegar a magia mas amanhã quando estiver online dou um toque pra você da ideia, até la tentem trabalhar nas outras partes do programa  
+fiz a aplicação que pega magias aleatorias para a classe, mas precisamos de um metodo para acelerar o processo, é muito lento.
   
 # Lista de afazeres  
   

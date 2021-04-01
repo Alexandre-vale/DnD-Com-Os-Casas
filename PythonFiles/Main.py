@@ -20,6 +20,8 @@ from pdfFiller import fill_pdf
 from formatPDF import abilities_modifiers, check_saving_throws, proficiencies_and_languages, check_skills, \
     get_formatted_equipment, get_formatted_traits, get_formatted_features
 
+from ClassSpells import find_class_spells
+
 # Ability modifier
 ModDic = {6: -2,
           7: -2,
@@ -44,6 +46,10 @@ background_info = get_background_info(background[1])
 gold = background_info["Gold"][0]
 
 ability_score = get_random_ability_score()
+
+WisForSpells = ModDic[ability_score["Wisdom"]]
+if WisForSpells < 1:
+    WisForSpells = 1
 
 race = get_random_race()
 
@@ -107,6 +113,7 @@ print("Proficiencies:", proficiencies)
 print("Ability Score:", ability_score)
 print("Languages:", languages)
 print("Equipment:", equipment)
+print("Spells:", find_class_spells(_class[0], WisForSpells))
 
 
 data_dict = {
