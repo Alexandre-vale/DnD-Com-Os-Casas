@@ -36,7 +36,7 @@ def get_class_features(class_url):
         return links[-2:]
 
     if len(expertises) > 0:
-        rogue_choice = random.choice(expertises)
+        rogue_choice = random.choice(expertises[1:])
         links.append(rogue_choice)
 
     return links
