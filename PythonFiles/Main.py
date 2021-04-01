@@ -12,11 +12,13 @@ from randomClass import get_random_class
 from raceProficiency import get_race_proficiency
 from subraceProficiency import get_subrace_proficiency
 from classInfo import get_class_info
+from classFeature import get_class_features
 from classProficiency import get_class_proficiency
 from SavingThrows import get_saving_throws
 from ClassEquipment import get_starting_equipment
 from pdfFiller import fill_pdf
-from formatPDF import abilities_modifiers, check_saving_throws, proficiencies_and_languages, check_skills
+from formatPDF import abilities_modifiers, check_saving_throws, proficiencies_and_languages, check_skills, \
+    get_formatted_equipment, get_formatted_traits, get_formatted_features
 
 # Ability modifier
 ModDic = {6: -2,
@@ -39,6 +41,7 @@ name = get_random_name()
 
 background = get_random_background()
 background_info = get_background_info(background[1])
+gold = background_info["Gold"][0]
 
 ability_score = get_random_ability_score()
 
@@ -46,6 +49,8 @@ race = get_random_race()
 
 _class = get_random_class()
 class_info = get_class_info(_class[1])
+class_features = get_class_features(_class[1])
+print("FEATURES:", class_features)
 
 if "subraces" in race[1]:
     race_info = get_subrace_info(race[1])
@@ -68,20 +73,28 @@ for keys in ability_score:
 
 hp = class_info["Hit_Die"] + ModDic[ability_score["Constitution"]]
 
+equipment = get_starting_equipment(class_info) + background_info["Starting_Equipment"] +  \
+            background_info["Starting_Equipment_Options"]
+
 proficiencies = get_class_proficiency(class_info, proficiencies)
 print("proficiencies - ATENÇÃO")
 proficiencies += background_info["Starting_Proficiencies"] + background_info["Starting_Proficiencies_Options"]
 
+# PDF
 ability_modifier = abilities_modifiers(ability_score, ModDic)
 saving_throws = get_saving_throws(class_info)
 check_saving_throws = check_saving_throws(saving_throws, ability_modifier)
 proficiencies_and_languages = proficiencies_and_languages(languages, proficiencies)
 check_skills = check_skills(proficiencies, ability_modifier)
+equipment_formatted = get_formatted_equipment(equipment)
+traits_formatted = get_formatted_traits(traits)
+features_formatted = get_formatted_features(class_features)
 
 
 print("Name:", name)
 print("Background:", background[0])
 print("Background Info:", background_info)
+print("Gold:", gold)
 print("Race:", race[0])
 print("Speed:", race_info["Speed"])
 print("Size:", race_info["Size"])
@@ -93,14 +106,17 @@ print("Traits:", traits)
 print("Proficiencies:", proficiencies)
 print("Ability Score:", ability_score)
 print("Languages:", languages)
-print("Equipment:", get_starting_equipment(class_info))
+print("Equipment:", equipment)
 
 
 data_dict = {
     'PlayerName': 'Rogério rei delas',
     'CharacterName' : name,
-    'Background': background[0],
     'CharacterName 2': name,
+    'Background': background[0],
+    'GP': gold,
+    'Equipment': equipment_formatted,
+    "Features and Traits": traits_formatted + features_formatted,
     'Race ': race[0],
     'Speed': race_info['Speed'],
     'Height': race_info['Size'],

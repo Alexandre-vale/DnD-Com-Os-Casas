@@ -71,3 +71,28 @@ def check_skills(proficiencies, ability_modifier):
 
     return final_result_skill
 
+
+def get_formatted_equipment(equipments):
+    final_result = ''
+    for equipment in equipments:
+        if type(equipment) == str:
+            final_result += "\n - " + equipment
+        else:
+            for equipment_inside_list in equipment:
+                final_result += "\n - " + equipment_inside_list
+    return final_result
+
+
+def get_formatted_traits(traits):
+    final_result = ''
+    for trait in traits:
+        final_result += "\n - " + trait
+    return final_result
+
+
+def get_formatted_features(features):
+    final_result = ''
+    for feature in features:
+        final_result += "\n - " + feature
+    return final_result
+

@@ -12,7 +12,8 @@ def get_background_info(background_url):
                                 "Starting_Proficiencies": None,
                                 "Starting_Proficiencies_Options": None,
                                 "Starting_Equipment": None,
-                                "Starting_Equipment_Options": None}
+                                "Starting_Equipment_Options": None,
+                                "Gold": None}
 
     background_info = {}
 
@@ -74,6 +75,9 @@ def get_background_info(background_url):
     else:
         background_info["Starting_Equipment_Options"] = []
 
+    # Gold
+    background_info["Gold"] = [background_info_from_api["Gold"]]
+
     '''
     # Skills
     background_info["Skills"] = []
@@ -95,3 +99,4 @@ def get_background_info(background_url):
 
     return background_info
 
+print(get_background_info("http://127.0.0.1:5000/background/acolyte"))
