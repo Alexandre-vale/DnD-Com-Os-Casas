@@ -1,13 +1,14 @@
 import random
 
 
-def get_subrace_languages(race_stats):
+def get_subrace_languages(subrace_stats):
     languages = []
-    for language in race_stats["Languages"]:
+    for language in subrace_stats["Languages"]:
         languages.append(language["name"])
 
-    if ("Language_Options" in race_stats) and (race_stats["Language_Options"] != 0):
-        random_secondary_language = random.choice(race_stats['Language_Options']['from'])
-        return languages[0], languages[1], random_secondary_language['name']
+    if ("Language_Options" in subrace_stats) and (subrace_stats["Language_Options"] != 0):
+        random_optional_language = random.choice(subrace_stats['Language_Options']['from'])
+        languages.append(random_optional_language["name"])
+        return languages
     else:
-        return languages[0], languages[1]
+        return languages

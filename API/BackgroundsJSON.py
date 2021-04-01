@@ -2,11 +2,11 @@
 
 
 backgrounds = {
-    "cont": 
     "results": [
         {
                 "index": "acolyte",
                 "name": "Acolyte",
+                "url": "background/acolyte",
                 "starting_proficiencies": [
                     {
                         "index": "skill-insight",
@@ -127,21 +127,19 @@ backgrounds = {
                 {
                     "choose": 1,
                     "type": "equipment",
-                    "from": [
+                    "from":
                         {
-                            "equipment_category": {
                                 "index": "holy-symbols",
                                 "name": "Holy Symbols",
                                 "url": "/api/equipment-categories/holy-symbols"
-                            }
                         }
-                    ]
                 }
             ]
-        }
+        },
         {
                 "index": "charlatan",
                 "name": "Charlatan",
+                "url": "background/charlatan",
                 "starting_proficiencies": [
                     {
                         "index": "skill-deception",
@@ -152,7 +150,7 @@ backgrounds = {
                         "index": "skill-sleight-of-hand",
                         "name": "Skill: Sleight of hand",
                         "url": "/api/proficiencies/skill-sleight-of-hand"
-                    }
+                    },
                     {
                         "index": "disguise-kit",
                         "name": "Disguise kit",
@@ -180,7 +178,7 @@ backgrounds = {
                             "url": "/api/equipment/pouch"
                         },
                         "quantity": 1
-                    }
+                    },
                     { 
                         "equipment": {
                             "index": "disguise-kit",
@@ -194,6 +192,7 @@ backgrounds = {
         {
                 "index": "criminal",
                 "name": "Criminal",
+                "url": "background/criminal",
                 "starting_proficiencies": [
                     {
                         "index": "skill-deception",
@@ -251,6 +250,7 @@ backgrounds = {
         {
                 "index": "entertainer",
                 "name": "Entertainer",
+                "url": "background/entertainer",
                 "starting_proficiencies": [
                     {
                         "index": "skill-acrobatics",
@@ -261,7 +261,7 @@ backgrounds = {
                         "index": "skill-performance",
                         "name": "Skill: Performance",
                         "url": "/api/proficiencies/skill-performance"
-                    }
+                    },
                     {
                         "index": "disguise-kit",
                         "name": "Disguise kit",
@@ -318,6 +318,7 @@ backgrounds = {
         {
                 "index": "folk-hero",
                 "name": "Folk Hero",
+                "url": "background/folk-hero",
                 "starting_proficiencies": [
                     {
                         "index": "skill-animal-handling",
@@ -393,6 +394,7 @@ backgrounds = {
         {
                 "index": "guild-artisan",
                 "name": "Guild Artisan",
+                "url": "background/guild-artisan",
                 "starting_proficiencies": [
                     {
                         "index": "skill-insight",
@@ -533,6 +535,7 @@ backgrounds = {
         {
                 "index": "hermit",
                 "name": "Hermit",
+                "url": "background/hermit",
                 "starting_proficiencies": [
                     {
                         "index": "skill-medicine",
@@ -666,6 +669,7 @@ backgrounds = {
         {
                 "index": "noble",
                 "name": "Noble",
+                "url": "background/noble",
                 "starting_proficiencies": [
                     {
                         "index": "skill-persuasion",
@@ -796,6 +800,7 @@ backgrounds = {
         {
                 "index": "outlander",
                 "name": "Outlander",
+                "url": "background/outlander",
                 "starting_proficiencies": [
                     {
                         "index": "skill-athletics",
@@ -932,8 +937,9 @@ backgrounds = {
                 ],
         },
         {
-                "index": "Sage",
+                "index": "sage",
                 "name": "Sage",
+                "url": "background/sage",
                 "starting_proficiencies": [
                     {
                         "index": "skill-arcana",
@@ -1062,6 +1068,7 @@ backgrounds = {
         {
                 "index": "sailor",
                 "name": "Sailor",
+                "url": "background/sailor",
                 "starting_proficiencies": [
                     {
                         "index": "skill-athletics",
@@ -1114,6 +1121,7 @@ backgrounds = {
         {
                 "index": "soldier",
                 "name": "Soldier",
+                "url": "background/soldier",
                 "starting_proficiencies": [
                     {
                         "index": "skill-athletics",
@@ -1162,11 +1170,3 @@ backgrounds = {
         },
     ]
 }
-
-
-
-
-
-
-
-

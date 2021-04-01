@@ -3,19 +3,20 @@ import random
 
 
 def get_random_class():
-    class_url = "https://www.dnd5eapi.co/api/classes"
+    base_url_class = "https://www.dnd5eapi.co/api/classes"
 
-    class_info_api = requests.get(class_url)
+    all_classes_api = requests.get(base_url_class)
 
-    class_info_json = class_info_api.json()
+    all_classes_json = all_classes_api.json()
 
-    base_class = {}
+    base_classes = {}
 
-    for classes in class_info_json["results"]:
-        base_class[classes["name"]] = class_url + '/' + classes['index']
+    for classes in all_classes_json["results"]:
+        base_classes[classes["name"]] = base_url_class + '/' + classes['index']
 
-    random_class = random.choice(list(base_class.items()))
-    #
+    random_class = random.choice(list(base_classes.items()))
+
+    '''
     subclass_info = requests.get(random_class[1])
 
     subclass_info_json =  subclass_info.json()
@@ -26,5 +27,6 @@ def get_random_class():
         base_subclass.append(random_class[0] + '-' + subclass["name"])
 
     random_classes = random.choice(base_subclass)
-    # cagada marcada
-    return [random_classes, random_class[1]]
+    '''
+
+    return random_class
