@@ -41,15 +41,20 @@ ModDic = {6: -2,
 
 name = get_random_name()
 
-background = get_random_background()
-background_info = get_background_info(background[1])
-gold = background_info["Gold"][0]
+# background = get_random_background()
+# background_info = get_background_info(background[1])
+# gold = background_info["Gold"][0]
 
 ability_score = get_random_ability_score()
 
+IntForSpells = ModDic[ability_score["Intelligence"]]
 WisForSpells = ModDic[ability_score["Wisdom"]]
 if WisForSpells < 1:
     WisForSpells = 1
+if IntForSpells < 1:
+    IntForSpells = 1
+
+
 
 race = get_random_race()
 
@@ -58,18 +63,34 @@ class_info = get_class_info(_class[1])
 class_features = get_class_features(_class[1])
 print("FEATURES:", class_features)
 
+jooj = find_class_spells(_class[0], WisForSpells, IntForSpells)
+print(jooj)
+SpellDic = jooj[0]
+SpellSlot= jooj[1]
+SpellMod = jooj[2]
+
 if "subraces" in race[1]:
     race_info = get_subrace_info(race[1])
     languages = get_subrace_languages(race_info)
-    languages += background_info["Languages"]
+    #languages += background_info["Languages"]
     traits = get_subrace_traits(race_info)
     proficiencies = get_subrace_proficiency(race_info)
 else:
     race_info = get_race_info(race[1])
     languages = get_race_languages(race_info)
-    languages += background_info["Languages"]
+    #languages += background_info["Languages"]
     traits = get_race_traits(race_info)
     proficiencies = get_race_proficiency(race_info)
+
+
+background = get_random_background()
+background_info = get_background_info(background[1], languages)
+languages += background_info["Languages"]
+gold = background_info["Gold"][0]
+
+proficiencies += background_info["Starting_Proficiencies_Options"]
+
+skills = [x for x in proficiencies if "Skill" in x]
 
 for keys in ability_score:
     for ability_score_bonus in race_info["Ability_Bonuses"]:
@@ -82,9 +103,12 @@ hp = class_info["Hit_Die"] + ModDic[ability_score["Constitution"]]
 equipment = get_starting_equipment(class_info) + background_info["Starting_Equipment"] +  \
             background_info["Starting_Equipment_Options"]
 
-proficiencies = get_class_proficiency(class_info, proficiencies)
+proficiencies = get_class_proficiency(class_info, proficiencies, skills)
 print("proficiencies - ATENÇÃO")
-proficiencies += background_info["Starting_Proficiencies"] + background_info["Starting_Proficiencies_Options"]
+proficiencies += background_info["Starting_Proficiencies"]
+
+skills = [x for x in proficiencies if "Skill" in x]
+print("Skills: " + str(skills))
 
 # PDF
 ability_modifier = abilities_modifiers(ability_score, ModDic)
@@ -99,7 +123,7 @@ features_formatted = get_formatted_features(class_features)
 
 print("Name:", name)
 print("Background:", background[0])
-print("Background Info:", background_info)
+#print("Background Info:", background_info)
 print("Gold:", gold)
 print("Race:", race[0])
 print("Speed:", race_info["Speed"])
@@ -113,11 +137,11 @@ print("Proficiencies:", proficiencies)
 print("Ability Score:", ability_score)
 print("Languages:", languages)
 print("Equipment:", equipment)
-print("Spells:", find_class_spells(_class[0], WisForSpells))
+print("Spells:", SpellDic)
 
 
 data_dict = {
-    'PlayerName': 'Rogério rei delas',
+    'PlayerName': 'Belo Homem',
     'CharacterName' : name,
     'CharacterName 2': name,
     'Background': background[0],
@@ -191,10 +215,56 @@ data_dict = {
     'Check Box 38': check_skills['SleightofHand']['Check_Box'],
     'Check Box 39': check_skills['Stealth']['Check_Box'],
     'Check Box 40': check_skills['Survival']['Check_Box'],
-    'ProfBonus': '+2'
-
+    'ProfBonus': '+2',
+    'SlotsTotal 19' : str(SpellSlot),
+    'SlotsRemaining 19' : '0'
 }
-
+Traduct = {
+    'cantrip 1' : 'Spells 1014',
+    'cantrip 2' : 'Spells 1016',
+    'cantrip 3' : 'Spells 1017',
+    'cantrip 4' : 'Spells 1018',
+    'cantrip 5' : 'Spells 1019',
+    'cantrip 6' : 'Spells 1020',
+    'cantrip 7' : 'Spells 1021',
+    'cantrip 8' : 'Spells 1022',
+    'Spell_1 1' : 'Spells 1015',
+    'Spell_1 2' : 'Spells 1023',
+    'Spell_1 3' : 'Spells 1024',
+    'Spell_1 4' : 'Spells 1025',
+    'Spell_1 5' : 'Spells 1026',
+    'Spell_1 6' : 'Spells 1027',
+    'Spell_1 7' : 'Spells 1028',
+    'Spell_1 8' : 'Spells 1029',
+    'Spell_1 9' : 'Spells 1030',
+    'Spell_1 10' : 'Spells 1031',
+    'Spell_1 11' : 'Spells 1032',
+    'Spell_1 12' : 'Spells 1033',
+    'Checkbox_1 1' : 'Check Box 251',
+    'Checkbox_1 2' : 'Check Box 309',
+    'Checkbox_1 3' : 'Check Box 3010',
+    'Checkbox_1 4' : 'Check Box 3011',
+    'Checkbox_1 5' : 'Check Box 3012',
+    'Checkbox_1 6' : 'Check Box 3013',
+    'Checkbox_1 7' : 'Check Box 3014',
+    'Checkbox_1 8' : 'Check Box 3015',
+    'Checkbox_1 9' : 'Check Box 3016',
+    'Checkbox_1 10' : 'Check Box 3017',
+    'Checkbox_1 11' : 'Check Box 3018',
+    'Checkbox_1 12' : 'Check Box 3019',
+    'Spellcasting Class 2' : 'foda',
+    'SpellcastingAbility 2' : SpellMod,
+    'SpellSaveDC  2' : ability_modifier[SpellMod] + 10,
+    'SpellAtkBonus 2' : ability_modifier[SpellMod]
+}
+#Comeca lista cantrip
+for i in range(len(SpellDic["cantrips"])):
+    data_dict[Traduct[f'cantrip {i+1}']] = SpellDic["cantrips"][i]
+#Termina lista contrip
+#Começa lista de magia
+for i in range(len(SpellDic["Level_1"])):
+    data_dict[Traduct[f'Spell_1 {i+1}']] = SpellDic["Level_1"][i]["Spell_Name"]
+    data_dict[Traduct[f'Checkbox_1 {i+1}']] = SpellDic["Level_1"][i]["Prepared"]
 
 #Bug do item e bug do half-elf language gerar duas skills iguais
 

@@ -3,7 +3,7 @@ import random
 import numpy as np
 
 
-def get_background_info(background_url):
+def get_background_info(background_url, imported_languages):
     background_info_api = requests.get(background_url)
 
     background_info_json = background_info_api.json()
@@ -26,10 +26,15 @@ def get_background_info(background_url):
     # Language Info
     if background_info_from_api["Language_Options"] != None:
         number_of_random_languages = background_info_from_api["Language_Options"]["choose"]
-
-        random_languages = np.random.choice(background_info_from_api["Language_Options"]["from"],
+        background_language_pool = background_info_from_api["Language_Options"]["from"]
+        random_languages = np.random.choice(background_language_pool,
                                             size=number_of_random_languages,
                                             replace=False)
+        # Bugfix para evitar lingaus repetidas virem de background
+        background_language_pool = [x for x in background_language_pool if x not in random_languages]
+        for language in random_languages:
+            if language in imported_languages:
+                language = random.choice(background_language_pool)
 
         # random_languages = random.choices(list(background_info_from_api["Language_Options"]["from"]),
                                           # k=number_of_random_languages)
@@ -99,4 +104,4 @@ def get_background_info(background_url):
 
     return background_info
 
-print(get_background_info("http://127.0.0.1:5000/background/acolyte"))
+#print(get_background_info("http://127.0.0.1:5000/background/acolyte"))

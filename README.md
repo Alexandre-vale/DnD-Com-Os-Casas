@@ -19,7 +19,7 @@ Ai a ficha ta pronta;
   
 # CHANGELOG, VEJA ANTES DE COMEÇAR  
   
-fiz a aplicação que pega magias aleatorias para a classe, mas precisamos de um metodo para acelerar o processo, é muito lento.
+Resolvi o bug de magias repetidas e o de linguas repetidas, agora falta o de skills
   
 # Lista de afazeres  
   
@@ -31,7 +31,12 @@ Coletado informações de HP, Saving throws, proficiencias e equipamentos proven
 Programa para calcular os stats base(4d6 dropa o menor)  
 Criação de uma ficha em PDF que tem auto-preenchimento
   
-A Fazer:  
-Programa para coletar as informações de classe, falta pouca coisa  
+A Fazer:
+Resolver bugs
 Aplicação flask que devolve uma ficha aleatoria quando recebe um request GET  
 Tomar uma ceva depois que esse projeto estiver pronto  
+
+# BUGS
+
+Skills repetidas: Precisa consertar, eu tentei, da pra ver uns codigos soltos na tentativa
+mas ta bem dificil
