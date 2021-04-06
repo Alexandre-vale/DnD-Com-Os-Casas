@@ -19,24 +19,16 @@ Ai a ficha ta pronta;
   
 # CHANGELOG, VEJA ANTES DE COMEÇAR  
   
-Resolvi o bug de magias repetidas e o de linguas repetidas, agora falta o de skills
+Dahora
   
 # Lista de afazeres  
   
 Feito:  
-Classe que monta a ficha completa  
-Programa Lookup que permite visualizar o que o request get no api do d&d5e retorna  
-Programa para coletar as informações de raça  
-Coletado informações de HP, Saving throws, proficiencias e equipamentos provenientes da classe  
-Programa para calcular os stats base(4d6 dropa o menor)  
-Criação de uma ficha em PDF que tem auto-preenchimento
-  
+Tudo
+
 A Fazer:
-Resolver bugs
-Aplicação flask que devolve uma ficha aleatoria quando recebe um request GET  
-Tomar uma ceva depois que esse projeto estiver pronto  
+Nada no momento
 
 # BUGS
 
-Skills repetidas: Precisa consertar, eu tentei, da pra ver uns codigos soltos na tentativa
-mas ta bem dificil
+Nada no momento

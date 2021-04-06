@@ -7,16 +7,15 @@ def get_class_proficiency(class_info, proficiencies, imported_skills):
         proficiencies.append(proficiency["name"])
 
     # proficiencies_to_add = random.choices(class_info['Proficiency_Choices'][0]['from'], k=class_info['Proficiency_Choices'][0]['choose'])
-    proficiency_pool = class_info['Proficiency_Choices'][0]['from']
-    proficiency_choices = np.random.choice(class_info['Proficiency_Choices'][0]['from'],
+    proficiency_raw = class_info['Proficiency_Choices'][0]['from']
+    #print("Adoleta: " + str(proficiency_raw))
+    proficiency_pool = [x['name'] for x in proficiency_raw if x['name'] not in imported_skills]
+    #print("Adoleta: " + str(proficiency_pool))
+    proficiency_choices = np.random.choice(proficiency_pool,
                                             size=class_info['Proficiency_Choices'][0]['choose'],
                                             replace=False)
-    proficiency_pool = [x for x in proficiency_pool if x not in proficiency_choices]
-    for skill in proficiency_choices:
-        if skill in imported_skills:
-            skill = random.choice(proficiency_pool)
     
     for proficiency_to_add in proficiency_choices:
-        proficiencies.append(proficiency_to_add["name"])
+        proficiencies.append(proficiency_to_add)
 
     return proficiencies

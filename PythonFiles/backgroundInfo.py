@@ -26,16 +26,11 @@ def get_background_info(background_url, imported_languages):
     # Language Info
     if background_info_from_api["Language_Options"] != None:
         number_of_random_languages = background_info_from_api["Language_Options"]["choose"]
-        background_language_pool = background_info_from_api["Language_Options"]["from"]
+        background_language_raw = background_info_from_api["Language_Options"]["from"]
+        background_language_pool = [x for x in background_language_raw if x not in imported_languages]
         random_languages = np.random.choice(background_language_pool,
                                             size=number_of_random_languages,
                                             replace=False)
-        # Bugfix para evitar lingaus repetidas virem de background
-        background_language_pool = [x for x in background_language_pool if x not in random_languages]
-        for language in random_languages:
-            if language in imported_languages:
-                language = random.choice(background_language_pool)
-
         # random_languages = random.choices(list(background_info_from_api["Language_Options"]["from"]),
                                           # k=number_of_random_languages)
 

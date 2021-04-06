@@ -42,4 +42,4 @@ def get_class_features(class_url):
     return links
 
 
-print(get_class_features('https://www.dnd5eapi.co/api/classes/wizard'))
+#print(get_class_features('https://www.dnd5eapi.co/api/classes/wizard'))

@@ -22,7 +22,7 @@ def check_saving_throws(saving_throws, ability_score):
     return saving_dict
 
 
-print(check_saving_throws(['Constitution', 'Charisma'], {'Strength': 11, 'Dexterity': 13, 'Constitution': 16, 'Intelligence': 11, 'Wisdom': 14, 'Charisma': 8}))
+#print(check_saving_throws(['Constitution', 'Charisma'], {'Strength': 11, 'Dexterity': 13, 'Constitution': 16, 'Intelligence': 11, 'Wisdom': 14, 'Charisma': 8}))
 
 
 def proficiencies_and_languages(languages, proficiencies):
