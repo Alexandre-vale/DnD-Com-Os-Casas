@@ -1,21 +1,16 @@
 import random
 import requests
-
+from BackgroundsJSON import backgrounds
 
 def get_random_background():
-    base_url_backgrounds = "http://127.0.0.1:5000/backgrounds"
+    imported_backgrounds = backgrounds
 
-    base_url_background = "http://127.0.0.1:5000/"
+    base_backgrounds = []
 
-    background_api = requests.get(base_url_backgrounds)
+    for background in imported_backgrounds["results"]:
+        base_backgrounds.append(background["name"])
 
-    background_json = background_api.json()
-
-    base_backgrounds = {}
-
-    for background in background_json["results"]:
-        base_backgrounds[background["name"]] = base_url_background + background["url"]
-
-    random_background = random.choice(list(base_backgrounds.items()))
+    random_background = random.choice(base_backgrounds)
 
     return random_background
+

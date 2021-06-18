@@ -42,7 +42,7 @@ ModDic = {6: -2,
 name = get_random_name()
 
 background = get_random_background()
-background_info = get_background_info(background[1])
+background_info = get_background_info(background)
 gold = background_info["Gold"][0]
 
 ability_score = get_random_ability_score()
@@ -98,7 +98,7 @@ features_formatted = get_formatted_features(class_features)
 
 
 print("Name:", name)
-print("Background:", background[0])
+print("Background:", background)
 print("Background Info:", background_info)
 print("Gold:", gold)
 print("Race:", race[0])

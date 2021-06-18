@@ -1,13 +1,11 @@
 import requests
 import random
 import numpy as np
+from BackgroundsJSON import backgrounds
 
-
-def get_background_info(background_url):
-    background_info_api = requests.get(background_url)
-
-    background_info_json = background_info_api.json()
-
+def get_background_info(background_name):
+    selected_background = next(back for back in backgrounds["results"] if back["name"] == background_name)
+    #print(selected_background)
     background_info_from_api = {"Language_Options": None,
                                 "Starting_Proficiencies": None,
                                 "Starting_Proficiencies_Options": None,
@@ -18,10 +16,10 @@ def get_background_info(background_url):
     background_info = {}
 
     for keys in background_info_from_api:
-        if keys.lower() not in background_info_json:
+        if keys.lower() not in selected_background:
             background_info_from_api[keys] = None
         else:
-            background_info_from_api[keys] = background_info_json[keys.lower()]
+            background_info_from_api[keys] = selected_background[keys.lower()]
 
     # Language Info
     if background_info_from_api["Language_Options"] != None:
@@ -99,4 +97,4 @@ def get_background_info(background_url):
 
     return background_info
 
-print(get_background_info("http://127.0.0.1:5000/background/acolyte"))
+#print(get_background_info("Acolyte"))
