@@ -19,19 +19,16 @@ Ai a ficha ta pronta;
   
 # CHANGELOG, VEJA ANTES DE COMEÇAR  
   
-fiz a aplicação que pega magias aleatorias para a classe, mas precisamos de um metodo para acelerar o processo, é muito lento.
+Dahora
   
 # Lista de afazeres  
   
 Feito:  
-Classe que monta a ficha completa  
-Programa Lookup que permite visualizar o que o request get no api do d&d5e retorna  
-Programa para coletar as informações de raça  
-Coletado informações de HP, Saving throws, proficiencias e equipamentos provenientes da classe  
-Programa para calcular os stats base(4d6 dropa o menor)  
-Criação de uma ficha em PDF que tem auto-preenchimento
-  
-A Fazer:  
-Programa para coletar as informações de classe, falta pouca coisa  
-Aplicação flask que devolve uma ficha aleatoria quando recebe um request GET  
-Tomar uma ceva depois que esse projeto estiver pronto  
+Tudo
+
+A Fazer:
+Nada no momento
+
+# BUGS
+
+Nada no momento

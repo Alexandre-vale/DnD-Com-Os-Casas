@@ -6,6 +6,12 @@ from BackgroundsJSON import backgrounds
 def get_background_info(background_name):
     selected_background = next(back for back in backgrounds["results"] if back["name"] == background_name)
     #print(selected_background)
+
+def get_background_info(background_url, imported_languages):
+    background_info_api = requests.get(background_url)
+
+    background_info_json = background_info_api.json()
+
     background_info_from_api = {"Language_Options": None,
                                 "Starting_Proficiencies": None,
                                 "Starting_Proficiencies_Options": None,
@@ -24,11 +30,11 @@ def get_background_info(background_name):
     # Language Info
     if background_info_from_api["Language_Options"] != None:
         number_of_random_languages = background_info_from_api["Language_Options"]["choose"]
-
-        random_languages = np.random.choice(background_info_from_api["Language_Options"]["from"],
+        background_language_raw = background_info_from_api["Language_Options"]["from"]
+        background_language_pool = [x for x in background_language_raw if x not in imported_languages]
+        random_languages = np.random.choice(background_language_pool,
                                             size=number_of_random_languages,
                                             replace=False)
-
         # random_languages = random.choices(list(background_info_from_api["Language_Options"]["from"]),
                                           # k=number_of_random_languages)
 

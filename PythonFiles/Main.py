@@ -21,6 +21,7 @@ from formatPDF import abilities_modifiers, check_saving_throws, proficiencies_an
     get_formatted_equipment, get_formatted_traits, get_formatted_features
 
 from ClassSpells import find_class_spells
+from flask import Flask, send_file
 
 # Ability modifier
 ModDic = {6: -2,
@@ -39,34 +40,54 @@ ModDic = {6: -2,
           19: 4,
           20: 5}
 
-name = get_random_name()
 
 background = get_random_background()
 background_info = get_background_info(background)
 gold = background_info["Gold"][0]
 
-ability_score = get_random_ability_score()
+    ability_score = get_random_ability_score()
+    print("Pegou Abilidades")
+    IntForSpells = ModDic[ability_score["Intelligence"]]
+    WisForSpells = ModDic[ability_score["Wisdom"]]
+    if WisForSpells < 1:
+        WisForSpells = 1
+    if IntForSpells < 1:
+        IntForSpells = 1
 
-WisForSpells = ModDic[ability_score["Wisdom"]]
-if WisForSpells < 1:
-    WisForSpells = 1
 
-race = get_random_race()
 
-_class = get_random_class()
-class_info = get_class_info(_class[1])
-class_features = get_class_features(_class[1])
-print("FEATURES:", class_features)
+    race = get_random_race()
+    print("Pegou Raça")
+    _class = get_random_class()
+    print("Pegou classe")
+    class_info = get_class_info(_class[1])
+    class_features = get_class_features(_class[1])
+    #print("FEATURES:", class_features)
+    print("Vai pegar magias")
+    jooj = find_class_spells(_class[0], WisForSpells, IntForSpells)
+    print("pegou magias")
+    #print(jooj)
+    SpellDic = jooj[0]
+    SpellSlot= jooj[1]
+    SpellMod = jooj[2]
 
-if "subraces" in race[1]:
-    race_info = get_subrace_info(race[1])
-    languages = get_subrace_languages(race_info)
-    languages += background_info["Languages"]
-    traits = get_subrace_traits(race_info)
-    proficiencies = get_subrace_proficiency(race_info)
-else:
-    race_info = get_race_info(race[1])
-    languages = get_race_languages(race_info)
+    if "subraces" in race[1]:
+        race_info = get_subrace_info(race[1])
+        languages = get_subrace_languages(race_info)
+        #languages += background_info["Languages"]
+        traits = get_subrace_traits(race_info)
+        proficiencies = get_subrace_proficiency(race_info)
+    else:
+        race_info = get_race_info(race[1])
+        languages = get_race_languages(race_info)
+        #languages += background_info["Languages"]
+        traits = get_race_traits(race_info)
+        proficiencies = get_race_proficiency(race_info)
+
+
+    background = get_random_background()
+    print("pegou background")
+    background_info = get_background_info(background[1], languages)
     languages += background_info["Languages"]
     traits = get_race_traits(race_info)
     proficiencies = get_race_proficiency(race_info)

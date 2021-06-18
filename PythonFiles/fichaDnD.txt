@@ -119,9 +119,9 @@ Backstory
 Feat+Traits
 Treasure
 Spellcasting Class 2
-SpellcastingAbility 2
-SpellSaveDC  2
-SpellAtkBonus 2
+SpellcastingAbility 2 
+SpellSaveDC  2 
+SpellAtkBonus 2 
 SlotsTotal 19
 SlotsRemaining 19
 Spells 1014
