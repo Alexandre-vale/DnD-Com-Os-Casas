@@ -3,14 +3,8 @@ import random
 import numpy as np
 from BackgroundsJSON import backgrounds
 
-def get_background_info(background_name):
+def get_background_info(background_name, imported_languages):
     selected_background = next(back for back in backgrounds["results"] if back["name"] == background_name)
-    #print(selected_background)
-
-def get_background_info(background_url, imported_languages):
-    background_info_api = requests.get(background_url)
-
-    background_info_json = background_info_api.json()
 
     background_info_from_api = {"Language_Options": None,
                                 "Starting_Proficiencies": None,
@@ -103,4 +97,4 @@ def get_background_info(background_url, imported_languages):
 
     return background_info
 
-#print(get_background_info("Acolyte"))
+#print(get_background_info("Acolyte", []))
